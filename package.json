@@ -1,0 +1,27 @@
+{
+  "name": "vjudge-api",
+  "version": "1.0.0",
+  "description": "Unofficial vjudge api library",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rahathossain690/vjudge-node.git"
+  },
+  "keywords": [
+    "Vjudge",
+    "api",
+    "competetive",
+    "programming",
+    "vjudge-node",
+    "vcrawler"
+  ],
+  "author": "Rahat Hossain",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rahathossain690/vjudge-node/issues"
+  },
+  "homepage": "https://github.com/rahathossain690/vjudge-node#readme"
+}
