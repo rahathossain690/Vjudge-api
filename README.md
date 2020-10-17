@@ -10,7 +10,7 @@ Unofficial [Vjudge](https://vjudge.net/) api library for nodejs.
 var Vjudge = require('vjudge-api');
  
 //ES2015
-import Codeforces from 'vjudge-api';
+import Vjudge from 'vjudge-api';
 ```
 ## Api
 Here's some api level functionalities with example.
