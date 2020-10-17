@@ -797,62 +797,62 @@ describe('run_info', ()=>{
 })
 
 
-describe('problem', ()=>{
+describe('problems', ()=>{
     
     test('no peramiter but valid', ()=>{
-        expect( vjudge_api.problem() ).resolves;
+        expect( vjudge_api.problems() ).resolves;
     })
 
     test('different start type', ()=>{
-        expect( vjudge_api.problem({start : "haha"}) ).rejects.toThrow('start should be a positive number');
+        expect( vjudge_api.problems({start : "haha"}) ).rejects.toThrow('start should be a positive number');
     })
 
     test('start to be negetive', ()=>{
-        expect( vjudge_api.problem({start : -10}) ).rejects.toThrow('start should be a positive number');
+        expect( vjudge_api.problems({start : -10}) ).rejects.toThrow('start should be a positive number');
     })
 
     test('start to be floating point', ()=>{
-        expect( vjudge_api.problem({start : 1.2}) ).rejects.toThrow('start should be a positive number');
+        expect( vjudge_api.problems({start : 1.2}) ).rejects.toThrow('start should be a positive number');
     })
 
     test('different length type', ()=>{
-        expect( vjudge_api.problem({length : "haha"}) ).rejects.toThrow('length should be an integer between 1 and 20');
+        expect( vjudge_api.problems({length : "haha"}) ).rejects.toThrow('length should be an integer between 1 and 100');
     })
 
     test('length to be negetive', ()=>{
-        expect( vjudge_api.problem({length : -10}) ).rejects.toThrow('length should be an integer between 1 and 20');
+        expect( vjudge_api.problems({length : -10}) ).rejects.toThrow('length should be an integer between 1 and 100');
     })
 
     test('length to be floating point', ()=>{
-        expect( vjudge_api.problem({length : 1.2}) ).rejects.toThrow('length should be an integer between 1 and 20');
+        expect( vjudge_api.problems({length : 1.2}) ).rejects.toThrow('length should be an integer between 1 and 100');
     })
 
-    test('length to be more than 20', ()=>{
-        expect( vjudge_api.problem({length : 40}) ).rejects.toThrow('length should be an integer between 1 and 20');
+    test('length to be more than 100', ()=>{
+        expect( vjudge_api.problems({length : 1010}) ).rejects.toThrow('length should be an integer between 1 and 100');
     })
 
     test('sortDir to be other thing', () => {
-        expect( vjudge_api.problem({sortDir: "bleh"}) ).rejects.toThrow('sortDir should be either desc or asc');
+        expect( vjudge_api.problems({sortDir: "bleh"}) ).rejects.toThrow('sortDir should be either desc or asc');
     })
 
     test('OJId to be other thing', () => {
-        expect( vjudge_api.problem({OJId: 69}) ).rejects.toThrow('OJId should be string')
+        expect( vjudge_api.problems({OJId: 69}) ).rejects.toThrow('OJId should be string')
     })
 
     test('probNum to be other thing', () => {
-        expect( vjudge_api.problem({probNum: 69}) ).rejects.toThrow('probNum should be string')
+        expect( vjudge_api.problems({probNum: 69}) ).rejects.toThrow('probNum should be string')
     })
 
     test('title to be other thing', () => {
-        expect( vjudge_api.problem({title: 69}) ).rejects.toThrow('title should be string')
+        expect( vjudge_api.problems({title: 69}) ).rejects.toThrow('title should be string')
     })
 
     test('source to be other thing', () => {
-        expect( vjudge_api.problem({source: 69}) ).rejects.toThrow('source should be string')
+        expect( vjudge_api.problems({source: 69}) ).rejects.toThrow('source should be string')
     })
 
     test('category to be other thing', () => {
-        expect( vjudge_api.problem({category: 69}) ).rejects.toThrow('category should be string')
+        expect( vjudge_api.problems({category: 69}) ).rejects.toThrow('category should be string')
     })
 
 })

@@ -1,6 +1,6 @@
 const axios = require('axios')
 
-class Vjudge_api{
+class Vjudge{
     constructor(){
     }
 
@@ -50,9 +50,9 @@ class Vjudge_api{
         }
     }
 
-    static async problem(data){
+    static async problems(data){
         try{ 
-            data = this.validate_problem(data);
+            data = this.validate_problems(data);
             let response = await axios.get('https://vjudge.net/problem/data?draw=1&start=' + data.start + '&length=' + data.length + '&sortDir= '+ data.sortDir +'&sortCol=' + data.sortCol + '&OJId=' + data.OJId + '&probNum='+data.probNum+'&title='+data.title+'&source='+data.source+'&category=' + data.category);
             return response.data;
         } catch(err){
@@ -61,7 +61,7 @@ class Vjudge_api{
     }
     static async contest_status(data){
         try{
-            data = this.validate_contest_status(data);
+            data = this.validate_contest_status(data); 
             let response = await axios.get('https://vjudge.net/status/data/?draw=1&start='+data.start+'&length='+data.length+'&un='+data.un+'&num='+data.num+'&res='+data.res+'&language='+data.language+'&inContest='+data.inContest+'&contestId='+data.contestId);
             return response.data;
         } catch(err){
@@ -98,7 +98,7 @@ class Vjudge_api{
         }
     }
 
-    static validate_problem(data){
+    static validate_problems(data){
         try{
             if(data == null) data = {};
 
@@ -108,9 +108,9 @@ class Vjudge_api{
             else if(start == null) new_data.start = 0;
             else throw new Error('start should be a positive number');
 
-            if(typeof(length) == 'number' && length <= 20 && length >= 0 && Number.isInteger(length)) new_data.length = length;
+            if(typeof(length) == 'number' && length <= 100 && length >= 0 && Number.isInteger(length)) new_data.length = length;
             else if(length == null) new_data.length = 20;
-            else throw new Error('length should be an integer between 1 and 20');
+            else throw new Error('length should be an integer between 1 and 100');
 
             if(sortDir == 'desc' || sortDir == 'asc') new_data.sortDir = sortDir;
             else if(sortDir == null) new_data.sortDir = 'desc';
@@ -164,7 +164,7 @@ class Vjudge_api{
             else throw new Error('un should be string');
 
             if(typeof(num) == 'string') new_data.num = num;
-            else if(num == null) new_data.num = '';
+            else if(num == null) new_data.num = '-';
             else throw new Error('num should be string');
 
             if(typeof(res) == 'number' && res >= 0 && Number.isInteger(res) && res <= 11) new_data.res = res;
@@ -234,4 +234,4 @@ class Vjudge_api{
     }
 }
 
-module.exports = Vjudge_api;
+module.exports = Vjudge;
