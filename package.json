@@ -1,7 +1,7 @@
 {
   "name": "vjudge-api",
   "version": "1.0.0",
-  "description": "Unofficial vjudge api library",
+  "description": "Unofficial Vjudge api library",
   "main": "index.js",
   "scripts": {
     "test": "jest --detectOpenHandles",

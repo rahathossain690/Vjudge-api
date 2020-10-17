@@ -1,5 +1,5 @@
 # Vjudge-api
-Unofficial Vjudge-api library for nodejs.
+Unofficial [Vjudge](https://vjudge.net/) api library for nodejs.
 
 ## Install
 `$ npm install vjudge-api`
