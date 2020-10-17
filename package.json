@@ -4,7 +4,8 @@
   "description": "Unofficial vjudge api library",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index"
   },
   "repository": {
     "type": "git",
@@ -23,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/rahathossain690/vjudge-node/issues"
   },
-  "homepage": "https://github.com/rahathossain690/vjudge-node#readme"
+  "homepage": "https://github.com/rahathossain690/vjudge-node#readme",
+  "dependencies": {
+    "axios": "^0.20.0"
+  }
 }
