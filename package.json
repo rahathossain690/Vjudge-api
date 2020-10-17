@@ -4,7 +4,7 @@
   "description": "Unofficial vjudge api library",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --detectOpenHandles",
     "start": "node index"
   },
   "repository": {
@@ -27,5 +27,8 @@
   "homepage": "https://github.com/rahathossain690/vjudge-node#readme",
   "dependencies": {
     "axios": "^0.20.0"
+  },
+  "devDependencies": {
+    "jest": "^26.5.3"
   }
 }
