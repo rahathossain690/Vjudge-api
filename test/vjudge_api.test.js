@@ -1,18 +1,17 @@
-// const { TestScheduler } = require('jest')
-const vcrawler = require('./index')
+const vjudge_api = require('../index')
 
 
 describe('solve_count', ()=>{
     test('with empty peramiter', () => { 
-        expect( vcrawler.solve_count() ).rejects.toThrow('un is required and should be a non-empty string');
+        expect( vjudge_api.solve_count() ).rejects.toThrow('un is required and should be a non-empty string');
     })
 
     test('with wrong peramiter', () => {
-        expect( vcrawler.solve_count({bad: "new bad"}) ).rejects.toThrow('un is required and should be a non-empty string');
+        expect( vjudge_api.solve_count({bad: "new bad"}) ).rejects.toThrow('un is required and should be a non-empty string');
     })
 
     test('with wrong username', () => {
-        expect( vcrawler.solve_count({un: "rahathon680"}) ).rejects.toThrow('Request failed with status code 500');
+        expect( vjudge_api.solve_count({un: "rahathon680"}) ).rejects.toThrow('Request failed with status code 500');
     })
 
     test('with correct username', () => {
@@ -280,7 +279,7 @@ describe('solve_count', ()=>{
               ]
             }
           } // data of 17 oct, 2020
-        expect( vcrawler.solve_count({un: "rahathossain690"}) ).resolves.toStrictEqual(oj_data_rahathossain690);
+        expect( vjudge_api.solve_count({un: "rahathossain690"}) ).resolves.toStrictEqual(oj_data_rahathossain690);
     })
 })
 
@@ -752,7 +751,7 @@ describe('remote_ojs', ()=>{
           }
         }
       }; // data of 17 oct, 2020
-        expect(vcrawler.remote_ojs()).resolves.toStrictEqual(last_oj_data);
+        expect(vjudge_api.remote_ojs()).resolves.toStrictEqual(last_oj_data);
     })
 
 })
@@ -760,15 +759,15 @@ describe('remote_ojs', ()=>{
 describe('run_info', ()=>{
 
     test('with empty peramiter', ()=>{
-        expect(vcrawler.run_info()).rejects.toThrow('runId is required and should be a number');
+        expect(vjudge_api.run_info()).rejects.toThrow('runId is required and should be a number');
     })
 
     test('with wrong type', ()=>{
-        expect(vcrawler.run_info({runId: "hello"})).rejects.toThrow('runId is required and should be a number');
+        expect(vjudge_api.run_info({runId: "hello"})).rejects.toThrow('runId is required and should be a number');
     })
 
     test('with wrong peramiter', ()=>{
-        expect(vcrawler.run_info({runId: "hello"})).rejects.toThrow('runId is required and should be a number');
+        expect(vjudge_api.run_info({runId: "hello"})).rejects.toThrow('runId is required and should be a number');
     })
 
     test('with correct peramiter', ()=>{
@@ -792,7 +791,7 @@ describe('run_info', ()=>{
             "probNum": "CLUNQUE",
             "status": "Wrong Answer"
           }
-        expect(vcrawler.run_info({runId: 27812108})).resolves.toStrictEqual(data_for_27812108);
+        expect(vjudge_api.run_info({runId: 27812108})).resolves.toStrictEqual(data_for_27812108);
     })
 
 })
@@ -801,59 +800,59 @@ describe('run_info', ()=>{
 describe('problem', ()=>{
     
     test('no peramiter but valid', ()=>{
-        expect( vcrawler.problem() ).resolves;
+        expect( vjudge_api.problem() ).resolves;
     })
 
     test('different start type', ()=>{
-        expect( vcrawler.problem({start : "haha"}) ).rejects.toThrow('start should be a positive number');
+        expect( vjudge_api.problem({start : "haha"}) ).rejects.toThrow('start should be a positive number');
     })
 
     test('start to be negetive', ()=>{
-        expect( vcrawler.problem({start : -10}) ).rejects.toThrow('start should be a positive number');
+        expect( vjudge_api.problem({start : -10}) ).rejects.toThrow('start should be a positive number');
     })
 
     test('start to be floating point', ()=>{
-        expect( vcrawler.problem({start : 1.2}) ).rejects.toThrow('start should be a positive number');
+        expect( vjudge_api.problem({start : 1.2}) ).rejects.toThrow('start should be a positive number');
     })
 
     test('different length type', ()=>{
-        expect( vcrawler.problem({length : "haha"}) ).rejects.toThrow('length should be an integer between 1 and 20');
+        expect( vjudge_api.problem({length : "haha"}) ).rejects.toThrow('length should be an integer between 1 and 20');
     })
 
     test('length to be negetive', ()=>{
-        expect( vcrawler.problem({length : -10}) ).rejects.toThrow('length should be an integer between 1 and 20');
+        expect( vjudge_api.problem({length : -10}) ).rejects.toThrow('length should be an integer between 1 and 20');
     })
 
     test('length to be floating point', ()=>{
-        expect( vcrawler.problem({length : 1.2}) ).rejects.toThrow('length should be an integer between 1 and 20');
+        expect( vjudge_api.problem({length : 1.2}) ).rejects.toThrow('length should be an integer between 1 and 20');
     })
 
     test('length to be more than 20', ()=>{
-        expect( vcrawler.problem({length : 40}) ).rejects.toThrow('length should be an integer between 1 and 20');
+        expect( vjudge_api.problem({length : 40}) ).rejects.toThrow('length should be an integer between 1 and 20');
     })
 
     test('sortDir to be other thing', () => {
-        expect( vcrawler.problem({sortDir: "bleh"}) ).rejects.toThrow('sortDir should be either desc or asc');
+        expect( vjudge_api.problem({sortDir: "bleh"}) ).rejects.toThrow('sortDir should be either desc or asc');
     })
 
     test('OJId to be other thing', () => {
-        expect( vcrawler.problem({OJId: 69}) ).rejects.toThrow('OJId should be string')
+        expect( vjudge_api.problem({OJId: 69}) ).rejects.toThrow('OJId should be string')
     })
 
     test('probNum to be other thing', () => {
-        expect( vcrawler.problem({probNum: 69}) ).rejects.toThrow('probNum should be string')
+        expect( vjudge_api.problem({probNum: 69}) ).rejects.toThrow('probNum should be string')
     })
 
     test('title to be other thing', () => {
-        expect( vcrawler.problem({title: 69}) ).rejects.toThrow('title should be string')
+        expect( vjudge_api.problem({title: 69}) ).rejects.toThrow('title should be string')
     })
 
     test('source to be other thing', () => {
-        expect( vcrawler.problem({source: 69}) ).rejects.toThrow('source should be string')
+        expect( vjudge_api.problem({source: 69}) ).rejects.toThrow('source should be string')
     })
 
     test('category to be other thing', () => {
-        expect( vcrawler.problem({category: 69}) ).rejects.toThrow('category should be string')
+        expect( vjudge_api.problem({category: 69}) ).rejects.toThrow('category should be string')
     })
 
 })
@@ -861,91 +860,91 @@ describe('problem', ()=>{
 describe('contest_status', ()=>{
 
     test('no peremiter', () => {
-        expect( vcrawler.contest_status() ).rejects.toThrow('contestId is required and should be string');
+        expect( vjudge_api.contest_status() ).rejects.toThrow('contestId is required and should be string');
     })
 
     test('start with different value', ()=>{
-        expect( vcrawler.contest_status({start: "haha"}) ).rejects.toThrow("start should be a positive integer");
+        expect( vjudge_api.contest_status({start: "haha"}) ).rejects.toThrow("start should be a positive integer");
     });
 
     test('length with different value', () => {
-        expect( vcrawler.contest_status({length: "haha"}) ).rejects.toThrow("length should be an integer between 1 and 20");
+        expect( vjudge_api.contest_status({length: "haha"}) ).rejects.toThrow("length should be an integer between 1 and 20");
     })
 
     test('length with value more than 20', () => {
-        expect( vcrawler.contest_status({length: 100}) ).rejects.toThrow("length should be an integer between 1 and 20");
+        expect( vjudge_api.contest_status({length: 100}) ).rejects.toThrow("length should be an integer between 1 and 20");
     })
 
     test('un with different value', ()=>{
-        expect( vcrawler.contest_status({un: 100})).rejects.toThrow("un should be string");
+        expect( vjudge_api.contest_status({un: 100})).rejects.toThrow("un should be string");
     })
 
     test('num with different value', ()=>{
-        expect( vcrawler.contest_status({num: 100})).rejects.toThrow("num should be string");
+        expect( vjudge_api.contest_status({num: 100})).rejects.toThrow("num should be string");
     })
 
     test('res with different value', ()=>{
-        expect( vcrawler.contest_status({res: "haha"})).rejects.toThrow("res should be a positive integer between 0 and 11");
+        expect( vjudge_api.contest_status({res: "haha"})).rejects.toThrow("res should be a positive integer between 0 and 11");
     })
 
     test('res with value more than 11', ()=>{
-        expect( vcrawler.contest_status({res: 20})).rejects.toThrow("res should be a positive integer between 0 and 11");
+        expect( vjudge_api.contest_status({res: 20})).rejects.toThrow("res should be a positive integer between 0 and 11");
     })
 
     test('language with different value', ()=>{
-        expect( vcrawler.contest_status({language: 100})).rejects.toThrow("language should be string");
+        expect( vjudge_api.contest_status({language: 100})).rejects.toThrow("language should be string");
     })
 
     test('inContest with different value', ()=>{
-        expect( vcrawler.contest_status({inContest: 100})).rejects.toThrow("inContest should be boolean");
+        expect( vjudge_api.contest_status({inContest: 100})).rejects.toThrow("inContest should be boolean");
     })
 
     test('contestId with different value', ()=>{
-        expect( vcrawler.contest_status({contestId: "haha"})).rejects.toThrow("contestId is required and should be string");
+        expect( vjudge_api.contest_status({contestId: "haha"})).rejects.toThrow("contestId is required and should be string");
     })
 
 })
 
 describe('status', ()=>{
     test('no peremiter', () => {
-        expect( vcrawler.status() ).resolves;
+        expect( vjudge_api.status() ).resolves;
     })  
 
     test('start with different value', ()=>{
-        expect( vcrawler.status({start: "haha"}) ).rejects.toThrow("start should be a positive integer");
+        expect( vjudge_api.status({start: "haha"}) ).rejects.toThrow("start should be a positive integer");
     });
 
     test('length with different value', () => {
-        expect( vcrawler.status({length: "haha"}) ).rejects.toThrow("length should be an integer between 1 and 20");
+        expect( vjudge_api.status({length: "haha"}) ).rejects.toThrow("length should be an integer between 1 and 20");
     })
 
     test('length with value more than 20', () => {
-        expect( vcrawler.status({length: 100}) ).rejects.toThrow("length should be an integer between 1 and 20");
+        expect( vjudge_api.status({length: 100}) ).rejects.toThrow("length should be an integer between 1 and 20");
     })
 
     test('un with different value', ()=>{
-        expect( vcrawler.status({un: 100})).rejects.toThrow("un should be string");
+        expect( vjudge_api.status({un: 100})).rejects.toThrow("un should be string");
     })
 
     test('res with different value', ()=>{
-        expect( vcrawler.status({res: "haha"})).rejects.toThrow("res should be a positive integer between 0 and 11");
+        expect( vjudge_api.status({res: "haha"})).rejects.toThrow("res should be a positive integer between 0 and 11");
     })
 
     test('res with value more than 11', ()=>{
-        expect( vcrawler.status({res: 20})).rejects.toThrow("res should be a positive integer between 0 and 11");
+        expect( vjudge_api.status({res: 20})).rejects.toThrow("res should be a positive integer between 0 and 11");
     })
 
     test('language with different value', ()=>{
-        expect( vcrawler.status({language: 100})).rejects.toThrow("language should be string");
+        expect( vjudge_api.status({language: 100})).rejects.toThrow("language should be string");
     })
 
     test('onlyFolowee with different value', ()=>{
-        expect( vcrawler.status({onlyFolowee: "haha"})).rejects.toThrow("onlyFolowee should be boolean");
+        expect( vjudge_api.status({onlyFolowee: "haha"})).rejects.toThrow("onlyFolowee should be boolean");
     })
 })
 
 describe("verditcs", () => {
-    expect( vcrawler.verdicts() ).toStrictEqual({
+    expect( vjudge_api.verdicts() ).toStrictEqual({
         'All': 0,
         'Accepted': 1,
         'Presentation Error': 2,

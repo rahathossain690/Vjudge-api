@@ -16,8 +16,7 @@
     "api",
     "competetive",
     "programming",
-    "vjudge-node",
-    "vcrawler"
+    "vjudge-node"
   ],
   "author": "Rahat Hossain",
   "license": "ISC",

@@ -1,14 +1,8 @@
 const axios = require('axios')
 
-// const data = async () => {
-//     let got = await axios.get('https://vjudge.net/status/data/?draw=1&start=40&length=20&un=&num=-&res=0&language=&inContest=true&contestId=381785');
-//     console.log(got.data)
-// }
-
-// data();
-
-class Vjudge{
-    constructor(){}
+class Vjudge_api{
+    constructor(){
+    }
 
     static verdicts(){
         return {
@@ -27,7 +21,7 @@ class Vjudge{
         }
     }
 
-    static async remote_ojs(){ // done
+    static async remote_ojs(){ 
         try{
             let response = await axios.get('https://vjudge.net/util/remoteOJs');
             return response.data;
@@ -36,11 +30,10 @@ class Vjudge{
         }
     }
 
-    static async solve_count(data){ // done
+    static async solve_count(data){ 
         try{
             data = this.validate_solve_count(data);
             let response = await axios.get('https://vjudge.net/user/solveDetail/' + data.un);
-            // console.log(response.data);
             return response.data;
         } catch(err){
             throw new Error(err);
@@ -51,7 +44,6 @@ class Vjudge{
         try{
             data = this.validate_run_info(data);
             let response = await axios.get('https://vjudge.net/solution/data/' + data.runId);
-            // // console.log(response.data);
             return response.data;
         } catch(err){
             throw new Error(err);
@@ -62,8 +54,6 @@ class Vjudge{
         try{ 
             data = this.validate_problem(data);
             let response = await axios.get('https://vjudge.net/problem/data?draw=1&start=' + data.start + '&length=' + data.length + '&sortDir= '+ data.sortDir +'&sortCol=' + data.sortCol + '&OJId=' + data.OJId + '&probNum='+data.probNum+'&title='+data.title+'&source='+data.source+'&category=' + data.category);
-            // console.log(response.data);
-            // console.log('https://vjudge.net/problem/data?draw=1&start=' + start + '&length=' + length + '&sortDir= '+ sortDir +'&sortCol=' + sortCol + '&OJId=' + OJId + '&probNum='+probNum+'&title='+title+'&source='+source+'&category=' + category);
             return response.data;
         } catch(err){
             throw new Error(err);
@@ -73,7 +63,6 @@ class Vjudge{
         try{
             data = this.validate_contest_status(data);
             let response = await axios.get('https://vjudge.net/status/data/?draw=1&start='+data.start+'&length='+data.length+'&un='+data.un+'&num='+data.num+'&res='+data.res+'&language='+data.language+'&inContest='+data.inContest+'&contestId='+data.contestId);
-            // console.log(response.data);
             return response.data;
         } catch(err){
             throw new Error(err);
@@ -81,9 +70,8 @@ class Vjudge{
     }
     static async status(data){
         try{
-            data = this.validate_status(data); //console.log('https://vjudge.net/status/data/?draw=1&start='+data.start+'&length='+data.length+'&un='+data.un+'&OJId='+data.OJId+'&probNum='+data.probNum+'&res='+data.res+'&language='+data.language+'&onlyFollowee='+data.onlyFolowee)
+            data = this.validate_status(data); 
             let response = await axios.get('https://vjudge.net/status/data/?draw=1&start='+data.start+'&length='+data.length+'&un='+data.un+'&OJId='+data.OJId+'&probNum='+data.probNum+'&res='+data.res+'&language='+data.language+'&onlyFollowee='+data.onlyFolowee);
-            // console.log(response.data);
             return response.data;
         } catch(err){
             throw new Error(err);
@@ -246,57 +234,4 @@ class Vjudge{
     }
 }
 
-// https://vjudge.net/user/solveDetail/serotonin detail of user done 
-// https://vjudge.net/solution/data/27812108 done
-// https://vjudge.net/status/data/?draw=1&start=40&length=20&un=&num=-&res=0&language=&inContest=true&contestId=381785 in contest
-// https://vjudge.net/util/remoteOJs any oj done
-
-// https://vjudge.net/status/data/?draw=1&start=0&length=20&un=&OJId=All&probNum=&res=0&language=&onlyFollowee=false for any
-
-// https://vjudge.net/problem/data?draw=1&start=0&length=100&sortDir=desc&sortCol=5&OJId=CodeForces&probNum=1342&title=&source=&category=all for problem Done
-
-// Vjudge.problem({
-//     start: 0,
-//     length: 20,
-//     sortDir: 'desc',
-//     sortCol: 5,
-//     OJId: 'All',
-//     probNum: '',
-//     title: '',
-//     source: '',
-//     category: 'all'
-// }).then(info => {
-//     console.log(info);
-// }).catch(err => console.error(err))
-
-
-// Vjudge.contest_status({
-//     start: 0,
-//     length: 20,
-//     un: '',
-//     num: '-',
-//     res: 0,
-//     language: '',
-//     inContest: true,
-//     contestId: 381785
-// }).then(res => console.log(res))
-// .catch(err => console.error(err))
-
-// Vjudge.status({
-//     // start: 0,
-//     // length: 20,
-//     // un: "serotonin",
-//     // num: "-",
-//     // res: 0,
-//     // language: "", 
-//     // inContest: false,
-//     // OJId: "All",
-//     // probNum: ""
-// }).then(res => console.log(res))
-// .catch(err => console.log(err))
-
-console.log(Vjudge.verdicts())
-
-
-
-module.exports = Vjudge;
+module.exports = Vjudge_api;
