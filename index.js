@@ -62,7 +62,7 @@ class Vjudge{
     static async contest_status(data){
         try{
             data = this.validate_contest_status(data); 
-            let response = await axios.get('https://vjudge.net/status/data/?draw=1&start='+data.start+'&length='+data.length+'&un='+data.un+'&num='+data.num+'&res='+data.res+'&language='+data.language+'&inContest='+data.inContest+'&contestId='+data.contestId);
+            let response = await axios.get('https://vjudge.net/status/data?draw=1&start='+data.start+'&length='+data.length+'&un='+data.un+'&num='+data.num+'&res='+data.res+'&language='+data.language+'&inContest='+data.inContest+'&contestId='+data.contestId);
             return response.data;
         } catch(err){
             throw new Error(err);
